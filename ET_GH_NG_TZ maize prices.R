@@ -17,3 +17,7 @@ setwd("./Price_data")
 # Download 
 download("https://www.dropbox.com/s/pv68x94c9jfyo6z/AC_maize_prices.csv?dl=0", "AC_maize_prices.csv", mode="wb")
 mprice <- read.table("AC_maize_prices.csv", header=T, sep=",")
+
+# Generate mid-month pseudo-date
+mprice$date <- as.Date(paste(mprice$year, mprice$month, "15", sep = "-"))
+
