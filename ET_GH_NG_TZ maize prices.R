@@ -24,8 +24,17 @@ mprice <- read.table("AC_maize_prices.csv", header=T, sep=",")
 mprice$date <- as.Date(paste(mprice$year, mprice$month, "15", sep = "-"))
 
 # GAMMs -------------------------------------------------------------------
+# country-level series
 m1 <- gam(price~CC+s(rmonth, by=CC), data=mprice)
 summary(m1)
 
+# random intercepts and slopes
 m2 <- gam(price~CC+s(rmonth, by=CC)+s(market, bs="re")+s(market, rmonth, bs="re"), data=mprice)
 summary(m2)
+
+# random smooths on markets in countries
+m3 <- gam(price~CC+s(rmonth, by=CC)+s(rmonth, market, bs="fs", m=1), data=mprice)
+summary(m3)
+
+
+
