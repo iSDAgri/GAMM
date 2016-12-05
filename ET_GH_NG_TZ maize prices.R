@@ -20,21 +20,13 @@ setwd("./Price_data")
 download("https://www.dropbox.com/?s/pv68x94c9jfyo6z/AC_maize_prices.csv?dl=0", "AC_maize_prices.csv", mode="wb")
 mprice <- read.table("AC_maize_prices.csv", header=T, sep=",")
 
-# Generate mid-month pseudo-date
-mprice$date <- as.Date(paste(mprice$year, mprice$month, "15", sep = "-"))
-
 # GAMMs -------------------------------------------------------------------
 # country-level series
-m1 <- gam(price~CC+s(rmonth, by=CC), data=mprice)
+m1 <- gam(price~ CC + s(rmonth, CC, bs="fs", m=1) + s(month, CC, bs="fs", m=1, k=12), data=mprice)
 summary(m1)
 
-# random intercepts and slopes
-m2 <- gam(price~CC+s(rmonth, by=CC)+s(market, bs="re")+s(market, rmonth, bs="re"), data=mprice)
+# market-level series
+m2 <- gam(price~ market + s(rmonth, market, bs="fs", m=1) + s(month, market, bs="fs", m=1, k=12), data=mprice)
 summary(m2)
-
-# random smooths on markets in countries
-m3 <- gam(price~CC+s(rmonth, by=CC)+s(rmonth, market, bs="fs", m=1), data=mprice)
-summary(m3)
-
 
 
