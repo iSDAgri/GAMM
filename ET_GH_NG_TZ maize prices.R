@@ -29,7 +29,7 @@ summary(m2)
 
 # country-level model adjusted for temporal correlation
 mprice <- start_event(mprice, column="rmonth", event="market")
-(valRho <- acf(resid(m1), plot=FALSE)$acf[2])
+valRho <- acf(resid(m1), plot=FALSE)$acf[2]
 m3 <- gam(price~ CC + s(rmonth, CC, bs="fs", m=12) + s(month, CC, bs="fs", m=1), data=mprice,
           AR.start = mprice$start.event, rho=valRho)
 summary(m3)
