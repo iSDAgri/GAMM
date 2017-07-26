@@ -15,7 +15,7 @@ dir.create("Price_data", showWarnings=F)
 setwd("./Price_data")
 
 # Download 
-download("https://www.dropbox.com/?s/pv68x94c9jfyo6z/AC_maize_prices.csv?dl=0", "AC_maize_prices.csv", mode="wb")
+download("https://www.dropbox.com/s/pv68x94c9jfyo6z/AC_maize_prices.csv?raw=1", "AC_maize_prices.csv", mode="wb")
 mprice <- read.table("AC_maize_prices.csv", header=T, sep=",")
 
 # GAMMs -------------------------------------------------------------------
