@@ -20,11 +20,11 @@ mprice <- read.table("AC_maize_prices.csv", header=T, sep=",")
 
 # GAMMs -------------------------------------------------------------------
 # country-level model
-m1 <- gam(price~ CC + s(rmonth, CC, bs="fs", m=12) + s(month, CC, bs="fs", m=1), data=mprice)
+m1 <- gam(price~ CC + s(rmonth, CC, bs="fs", m=1) + s(month, CC, bs="fs", m=1), data=mprice)
 summary(m1)
 
 # market-level model
-m2 <- gam(price~ market + s(rmonth, market, bs="fs", m=12) + s(month, market, bs="fs", m=1), data=mprice)
+m2 <- gam(price~ market + s(rmonth, market, bs="fs", m=1) + s(month, market, bs="fs", m=1), data=mprice)
 summary(m2)
 
 # country-level model adjusted for temporal correlation
