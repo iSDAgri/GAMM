@@ -1,6 +1,6 @@
-#' AfSIS country wholesale maize price time series with GAMMs
-#' example data assembled from FAO (2010-2016) http://www.fao.org/giews/pricetool
-#' M. Walsh, December 2016
+# AfSIS country wholesale maize price time series with GAMMs
+# example data assembled from FAO (2010-2016) http://www.fao.org/giews/pricetool
+# M. Walsh, December 2016
 
 # Required packages
 # install.packages(c("downloader","itsadug")), dependencies=TRUE)
